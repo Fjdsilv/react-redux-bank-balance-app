@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
+import { deposit, withdraw } from "./features/banckAccountSlice";
 
 function App() {
+  const balance = useSelector((state) => state.bankAccount.balance);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Balance: $ {balance}</h2>
+      <button
+        onClick={() => { dispatch(deposit(10)) }}
+      >
+      Deposite: $10  
+      </button>
+      <button
+        onClick={() => { dispatch(withdraw(4)) }}
+      >
+      Withdraw: $4 if available
+      </button>
     </div>
   );
 }
 
 export default App;
+
+
+// useDispatch
+// useSelector
